@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+    This file is only part of the demo
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop | Key Action</title>
+    <link rel="shortcut icon" href="../oa-icon-logo.png">
+</head>
+
+<body>
+
+    <h1>My store!</h1>
+    <h2>Key Action</h2>
+
+
+    <a href="shop.html">Shop</a>
+    <ol>
+        <li>Compare: Key action</li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action A</a></li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action B</a></li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action C</a></li>
+    </ol>
+
+    <script>
+        ((w, d, opt) => {
+            w.baton = opt;
+            const scriptEl = document.createElement('script');
+            scriptEl.src = opt.scriptSrc;
+            d.querySelector('script').parentElement.appendChild(scriptEl);
+        })(window, document, {
+            scriptSrc: '../client.bundle-dev.js',
+            selector: 'a.site-nav__link[href*="pages/compare"]',
+            recoveryUrl: '../pages/one-more-thing.html',
+            recoveryContentId: 'one-more-thing'
+        });
+    </script>
+</body>
+
+</html>
