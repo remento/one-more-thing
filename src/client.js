@@ -12,7 +12,7 @@
 
     class BatonClient {
         constructor (options){
-            this.pollFreqMS = 5000;
+            this.pollFreqMS = 1500;
             this.recoveryDelayMS = 100;
             this.safeOrigin = w.location.origin;
             this.pmOpenedKey = options.pmOpenedKey;
