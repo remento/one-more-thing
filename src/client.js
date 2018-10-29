@@ -105,6 +105,9 @@
                     });
                     if (linkFound){
                         con_log('baton: key action triggered', { selector: this.selector, event: event});
+                        if (linkEl.target){
+                            return;
+                        }
                         linkEl.target = '_blank';  
                         // event._preventDefault = event.preventDefault; 
                         event.preventDefault = function(){

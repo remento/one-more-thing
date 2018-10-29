@@ -1,0 +1,59 @@
+{
+    "$schema": "http://json.schemastore.org/install",
+    "resources": {
+        "body": [
+            {
+                "type": "style",
+                "src": "./source/app.css"
+            },
+            {
+                "type": "script",
+                "src": "./source/app.js"
+            }
+        ]
+    },
+    "preview": {
+        "handlers": [
+            {
+                "options": [
+                    "_default"
+                ],
+                "execute": "INSTALL_SCOPE.setOptions(INSTALL_OPTIONS)"
+            }
+        ]
+    },
+    "options": {
+        "properties": {
+            
+            "rescueUrl": {
+                "type": "string",
+                "format": "url",
+                "title": "Rescue URL",
+                "description": "This link will load in the background tab - to be discovered later by the website visitor.",
+                "placeholder": "/one-more-thing/",
+                "order": 01,
+                "default": "https://www.orgaction.com/one-more-thing/"
+            },
+            "selector": {
+                "title": "Rescue Links",
+                "description": "Which link should activate the rescue tab?",
+                "order": 1,
+                "type": "object",
+                "format": "element",
+                "default": {
+                    "selector": "body",
+                    "method": "prepend"
+                }
+            },
+            "selectorOverride": {
+                "type": "string",
+                "format": "url",
+                "title": "Rescue URL",
+                "description": "This link will load in the background tab - to be discovered later by the website visitor.",
+                "placeholder": "/one-more-thing/",
+                "order": 2,
+                "default": "https://www.orgaction.com/one-more-thing/"
+            }
+        }
+    }
+}

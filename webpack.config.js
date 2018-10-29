@@ -21,10 +21,11 @@ module.exports = {
         {
             client: './src/client.js'
         },
-    output: {
+
+    output: [{
         filename: '[name].bundle-dev.js',
         path: path.resolve(__dirname, 'dist')
-    }
+    }]
     // plugins: [new HtmlWebpackPlugin({
     //     title: 'one-more-thing',
     //     inject: 'body',                                       // true || 'head' || 'body' || false:  Inject all assets into the given template or templateContent. When passing true or 'body' all javascript resources will be placed at the bottom of the body element. 'head' will place the scripts in the head element

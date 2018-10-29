@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+    This file is only part of the demo
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Other Action</title>
+    <link rel="shortcut icon" href="../oa-icon-logo.png">
+</head>
+
+<body>
+
+    <h1>My store!</h1>
+    <h2>Other Action</h2>
+
+    <a href="shop.html">Shop</a>
+    <ol>
+        <li><a href="../pages/compare.html" class="site-nav__link key-action">Compare: Key action</a></li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action A</a></li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action B</a></li>
+        <li><a href="../pages/shop-other-action.html" class="action-other">Other action C</a></li>
+    </ol>
+
+    <script>
+        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html'};
+        window.INSTALL = {siteId:'realdeal'}; //preview,proxy
+        window.INSTALL_PRODUCT = {};
+        ((w, d, opt) => {
+            w.baton = opt;
+            const scriptEl = document.createElement('script');
+            scriptEl.src = opt.scriptSrc;
+            d.querySelector('script').parentElement.appendChild(scriptEl);
+        })(window, document, {
+            scriptSrc: '../app.bundle-dev.js'
+            //selector: 'a.site-nav__link[href*="pages/compare"]',
+            //recoveryUrl: '../pages/one-more-thing.html',
+            //recoveryContentId: 'one-more-thing'
+        });
+    </script>
+</body>
+
+</html>
