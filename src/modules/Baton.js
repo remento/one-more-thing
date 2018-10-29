@@ -10,15 +10,6 @@ export class Baton extends BatonDefaults {
         this.con_debug = logger.debug;
         this.store = {};
         this.openingRescue = false;
-        
-
-        // consider: 
-        //      option BIND ORIGIN? target page needs script... 
-        //      build origin - 
-        //              for receiving messages
-        //              target 'opener'
-
-
         this.listenMessages(); 
         if (this.isRecoveryPage()) {
             this.recoveryExists = true;
@@ -97,21 +88,25 @@ export class Baton extends BatonDefaults {
                 let  clickedEl = event.target; // the event target could be an item within our link target... css has a "pointer" that could help
                 // Check if our selector matches the element that was clicked, or any of its parents
                 if ( !this.recoveryExists) {
-                    let linkEl, linkFound = event.path.some( (node) => { 
-                        // if (node.nodeName !== 'A'){ return false; }
-                        // Array.from(node.parentElement.children).indexOf(node);
-                        linkEl = node;
-                        let possibleTarget = !!node.parentElement && node.parentElement.querySelector(this.selector); 
-                        // Is the clickedEl in, or equal to, the possibleTarget?
-                        let testEl = clickedEl;
-                        do {
-                            if (possibleTarget === testEl){
-                                return true;
-                            }
-                            testEl = testEl.parentElement;
-                        } while (testEl && node.parentElement !== testEl); // don't test higher then needed
-                        return false;
-                    });
+                    let linkEl,
+                        // event.composedPath() is the standard - but limited support...
+                        eventPath = (event.composedPath && event.composedPath()) || event.path ||
+                            [clickedEl.parentElement.parentElement, clickedEl.parentElement, clickedEl],
+                        linkFound = eventPath.some( (node) => { 
+                            // if (node.nodeName !== 'A'){ return false; }
+                            // Array.from(node.parentElement.children).indexOf(node);
+                            linkEl = node;
+                            let possibleTarget = !!node.parentElement && node.parentElement.querySelector(this.selector); 
+                            // Is the clickedEl in, or equal to, the possibleTarget?
+                            let testEl = clickedEl;
+                            do {
+                                if (possibleTarget === testEl){
+                                    return true;
+                                }
+                                testEl = testEl.parentElement;
+                            } while (testEl && node.parentElement !== testEl); // don't test higher then needed
+                            return false;
+                        });
                     if (linkFound && linkEl.nodeName === 'A' && !linkEl.target){
                         this.con_log('baton: key action triggered', { selector: this.selector, event: event});
                         linkEl.target = '_blank';  

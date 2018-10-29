@@ -1,9 +1,7 @@
 import {Baton} from './modules/Baton.js';
 
 (function () {
-    /* global INSTALL, INSTALL_OPTIONS, INSTALL_PRODUCT */
-    // note: install_id not escaped properly when used webpack build
-
+    /* global INSTALL, INSTALL_OPTIONS */
     'use strict';
     
     // MSIE Check - No IE11 or below     //if (!window.addEventListener) return; // Check for IE9+
@@ -17,10 +15,9 @@ import {Baton} from './modules/Baton.js';
         cfInstallId = INSTALL.siteId,   // note: install_id is replaced with "value", which breaks webpack build
         cfPreview = INSTALL.preview,    // limited availability
         cfProxy = INSTALL.proxy,        // limited availability
-        options = INSTALL_OPTIONS,    // I-NSTALL_OPTIONS: CloudflareApps.installs['preview'].options
-        cfProduct = INSTALL_PRODUCT,  // I-NSTALL_PRODUCT:
+        options = INSTALL_OPTIONS,      // install_options: CloudflareApps.installs['preview'].options
+        // cfProduct = INSTALL_PRODUCT,   // install_product
         postMsg = ((cfPreview||{}).postMessage||{}).direct;
-    window.console.log('cfProduct', cfProduct);
     if (cfInstallId === 'preview' && postMsg){
         options.postMessage = postMsg;
     }

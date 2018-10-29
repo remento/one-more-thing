@@ -40,21 +40,10 @@
     <p><a href="http://www.orgaction.com/demos/one-more-thing/updates" title="Register for updates">Sign Up for Updates</a></p>
 
     <script>
-        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html'};
-        window.INSTALL = {siteId:'realdeal'}; //preview,proxy
-        window.INSTALL_PRODUCT = {};
-        ((w, d, opt) => {
-            w.baton = opt;
-            const scriptEl = document.createElement('script');
-            scriptEl.src = opt.scriptSrc;
-            d.querySelector('script').parentElement.appendChild(scriptEl);
-        })(window, document, {
-            scriptSrc: '../app.bundle-dev.js'
-            //selector: 'a.site-nav__link[href*="pages/compare"]',
-            //recoveryUrl: '../pages/one-more-thing.html',
-            //recoveryContentId: 'one-more-thing'
-        });
+        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html', selector:'a'};
+        window.INSTALL = {siteId:'realDeal'}; 
     </script>
+    <script src="../app.bundle-dev.js" async="async"></script>
 </body>
 
 </html>

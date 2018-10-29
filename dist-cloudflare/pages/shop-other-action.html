@@ -18,28 +18,15 @@
 
     <a href="shop.html">Shop</a>
     <ol>
-        <li><a href="../pages/compare.html" class="site-nav__link key-action">Compare: Key action</a></li>
-        <li><a href="../pages/shop-other-action.html" class="action-other">Other action A</a></li>
-        <li><a href="../pages/shop-other-action.html" class="action-other">Other action B</a></li>
-        <li><a href="../pages/shop-other-action.html" class="action-other">Other action C</a></li>
+        <li><a href="../pages/compare.html" class="key-action">Key action</a></li>
+        <li>Other action A (current page)</li>
     </ol>
 
     <script>
-        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html'};
-        window.INSTALL = {siteId:'realdeal'}; //preview,proxy
-        window.INSTALL_PRODUCT = {};
-        ((w, d, opt) => {
-            w.baton = opt;
-            const scriptEl = document.createElement('script');
-            scriptEl.src = opt.scriptSrc;
-            d.querySelector('script').parentElement.appendChild(scriptEl);
-        })(window, document, {
-            scriptSrc: '../app.bundle-dev.js'
-            //selector: 'a.site-nav__link[href*="pages/compare"]',
-            //recoveryUrl: '../pages/one-more-thing.html',
-            //recoveryContentId: 'one-more-thing'
-        });
+        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html', selector:'a'};
+        window.INSTALL = {siteId:'realDeal'}; 
     </script>
+    <script src="../app.bundle-dev.js" async="async"></script>
 </body>
 
 </html>
