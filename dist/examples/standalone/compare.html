@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop | Key Action</title>
+    <link rel="shortcut icon" href="../oa-icon-logo.png">
+</head>
+
+<body>
+
+    <h1>My store!</h1>
+    <h2>Compare: Key Action</h2>
+    build: standalone
+
+    <ol>
+        <li><a href="shop.html" class="shop-link">Shop shop-link</a></li>
+        <li>compare.html (current page)</li>
+        <li><a href="shop-other-action.html" class="action-other">shop-other-action.html action-other</a></li>
+    </ol>
+
+    <script>
+        // See src/modules/BatonDefaults for a full list of options
+        window.baton = {recoveryUrl:'/examples/standalone/one-more-thing.html', selector:'a'};
+    </script>
+    <script src="../../app.standalone.bundle-dev.js" async="async"></script>
+</body>
+
+</html>

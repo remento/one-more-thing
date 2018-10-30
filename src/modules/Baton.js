@@ -81,7 +81,7 @@ export class Baton extends BatonDefaults {
         this.con_log('baton: removeListenMessages: no listener configured to remove');
     }
 
-    listenInteraction() {
+    XXX_listenInteraction() {
         const handleClickFn = (event) => {
                 if (this.dead) return;
                 // User link is directed to a new window/tab
@@ -123,6 +123,53 @@ export class Baton extends BatonDefaults {
         this.removeListenInteraction = () => {
             document.body.removeEventListener('click', handleClickFn, listenerOptions);
         };
+    }
+
+    listenInteraction() {
+        // Listen for clicks, preprocess them and relay to this.onAnchorSelected
+        const opt = { capture: true, once: false, passive: false },
+            cbFnFilter = (event) => {
+                // Find the anchor if it exists, validate that it matches our selector. Note that the event target
+                //     could be an element nested within the anchor. 
+                if (this.dead) return;
+                let anchor, checkEl = event.target; //clickedEl = event.target,
+                while (!anchor && checkEl) {
+                    if (checkEl.nodeName === 'A'){ 
+                        anchor = checkEl;
+                        break;
+                    }
+                    checkEl = checkEl.parentElement;
+                }
+                if (anchor) {
+                    let nodeList = document.querySelectorAll(this.selector),
+                        nodeSet = new Set(nodeList.values()),
+                        anchorMatches = nodeSet.has(anchor);
+                    if (anchorMatches){
+                        return this.onAnchorSelected(anchor,event);
+                    }
+                }
+
+            };
+        document.body.addEventListener('click', cbFnFilter, opt);
+        this.removeListenInteraction = () => {
+            document.body.removeEventListener('click', cbFnFilter, opt);
+        };
+    }
+
+    onAnchorSelected(anchorEl, event){
+        // Called when visitor clicks on anchorEl, or an element within it. Pre-processed by listenInteraction.
+        this.con_log('baton: anchor selected', !anchorEl.target, anchorEl);
+        if (!anchorEl.target){
+            anchorEl.target = '_blank';  
+            event._preventDefault = event._preventDefault || event.preventDefault; // Expose original preventDefault if needed. 
+            event.preventDefault = function(){
+                // Conflict exists with some analytics tools which delay action, assuming normal navigation, so that 
+                //   they may signal an event. To compensate, the loading of the recovery page will be delayed to 
+                //   provide a window of time for these to signal an event. 
+                this.con_warn('baton: preventDefault bypassed to preserve anchor target functionality (target="_blank"). event._preventDefault is available when this occurs to override. ');
+            }; 
+            setTimeout(this.loadRecoveryPage.bind(this), this.recoveryDelayMS);
+        }
     }
     
     removeListenInteraction(){
@@ -190,6 +237,7 @@ export class Baton extends BatonDefaults {
     }
 
     stop (){
+        // Tells the page not to do anything, but does not change state of session
         this.con_log('baton: stop');
         this.cancelPollOpener(); 
         this.removeListenMessages(); 
@@ -197,6 +245,7 @@ export class Baton extends BatonDefaults {
     }
 
     die () {
+        // die clears session storage - refreshed pages will be able to open the tab
         this.con_log('baton: die');
         this.stop();
         this.recoveryExists = false;

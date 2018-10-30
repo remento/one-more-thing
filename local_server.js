@@ -7,12 +7,12 @@
 // ..demos\webpack> node local_server.js
 
 var port = 8080;
-var static = require('node-static');
-var file = new static.Server('./dist', { cache: 0 });
-var file = new static.Server('./dist-cloudflare', { cache: 0 });
+var nodeStatic = require('node-static');
+var file = new nodeStatic.Server('./dist', { cache: 0 });
 
 require('http')
     .createServer(function (request, response) {
+
         request.addListener('end', function () {
             // Serve files!
             file.serve(request, response);

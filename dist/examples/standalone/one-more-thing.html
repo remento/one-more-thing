@@ -14,10 +14,16 @@
 </head>
 
 <body>
-    one-more-thing
-
+    
+    <h1>My store!</h1>
+    <h2>one-more-thing</h2>
+    build: standalone
+    
     <ol>
-        <li><a href="../pages/shop.html">Shop</a></li>
+        <li><a href="shop.html" class="shop-link">Shop shop-link</a></li>
+        <li><a href="compare.html" class="key-action">compare.html key-action</a></li>
+        <li><a href="shop-other-action.html" class="action-other">shop-other-action.html action-other</a></li>
+        <li><em>one-more-thing</em> (current page)</li>
     </ol>
 
     <div id="one-more-thing"></div>
@@ -40,10 +46,10 @@
     <p><a href="http://www.orgaction.com/demos/one-more-thing/updates" title="Register for updates">Sign Up for Updates</a></p>
 
     <script>
-        window.INSTALL_OPTIONS = {recoveryUrl:'/pages/one-more-thing.html', selector:'a'};
-        window.INSTALL = {siteId:'realDeal'}; 
+        // See src/modules/BatonDefaults for a full list of options
+        window.baton = {recoveryUrl:'/examples/standalone/one-more-thing.html', selector:'a'};
     </script>
-    <script src="../app.bundle-dev.js" async="async"></script>
+    <script src="../../app.standalone.bundle-dev.js" async="async"></script>
 </body>
 
 </html>

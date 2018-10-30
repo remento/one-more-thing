@@ -7,7 +7,10 @@ Convert more visitors by leaving a tab behind as they navigate your site. Site v
 
 Entice them with reminders, offers, surveys, email subscriptions, or even their shopping cart - the content of this tab is yours to decide.
 
-## Local build & testing
+## Options
+See src/modules/BatonDefaults.js for a complete list of runtime options
+
+## Install dependencies & Running the test webserver
 Install dependencies for build and a static webserver to test
 ```
 npm install
@@ -15,28 +18,22 @@ npm start
 ```
 You can access the test pages at: http://localhost:8080/
 
+Serves content from: `./dist/examples`
+
 ## Build
 JS comes packaged in multiple versions
 
-### CloudFlare Build
+### Development Build
 See the pages in example for how to include
-Currently building with 'development' options
+Building with 'development' options including source maps and console logging enabled
 ```
-npx webpack --config webpack.config.cloudflare.js
+> npm run-script build-dev
 ```
-
-### Generic Build
-See the pages in example for how to include
-Note: Updates pending to sync with CloudFlare version
-
-Production build
-```
-npx webpack --config webpack.config.prod.js
-```
-
-Dev build
-```
-npx webpack --config webpack.config.dev.js
-```
+which is an alias for:  `> npx webpack --config webpack.config.dev.js`
 
 
+### Production Build
+```
+> npm run build-prod
+```
+which is an alias for:  `> npx webpack --config webpack.config.js`

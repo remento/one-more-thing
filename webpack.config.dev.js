@@ -17,14 +17,14 @@ module.exports = {
     // mode: 'production',    // production: Sets process.env.NODE_ENV on DefinePlugin to value production. Enables FlagDependencyUsagePlugin, FlagIncludedChunksPlugin, ModuleConcatenationPlugin, NoEmitOnErrorsPlugin, OccurrenceOrderPlugin, SideEffectsFlagPlugin and UglifyJsPlugin.
     // mode: none/undefined,  // none: Opts out of any default optimization options
 
-    entry: //'./src/index.js',
-        {
-            app: './src/cloudflare-app.js'
-        },
+    entry: {
+        cloudflare: './src/cloudflare-app.js',
+        standalone: './src/standalone-app.js'
+    },
 
     output: {
-        filename: '[name].bundle-dev.js',
-        path: path.resolve(__dirname, 'dist-cloudflare')
+        filename: 'app.[name].bundle-dev.js',
+        path: path.resolve(__dirname, 'dist')
     }
    
 };

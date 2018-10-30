@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+    This file is only part of the demo
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shop - Other Action</title>
+    <link rel="shortcut icon" href="../oa-icon-logo.png">
+</head>
+
+<body>
+
+    <h1>My store!</h1>
+    <h2>Other Action</h2>
+    build: cloudflare
+    
+    <ol>
+        <li><a href="shop.html" class="shop-link">Shop shop-link</a></li>
+        <li><a href="compare.html" class="key-action">compare.html key-action</a></li>
+        <li>shop-other-action.html (current page)</li>
+    </ol>
+
+    <script>
+        // These are typically set by the CloudFlare App - only needed for offline testing
+        window.INSTALL_OPTIONS = {recoveryUrl:'/examples/cloudflare/one-more-thing.html', selector:'a'};
+        window.INSTALL = {siteId:'realDeal'}; 
+    </script>
+    <script src="../../app.cloudflare.bundle-dev.js" async="async"></script>
+</body>
+
+</html>
